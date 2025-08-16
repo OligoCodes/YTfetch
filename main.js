@@ -8,6 +8,7 @@ const videoType = document.getElementById("videoType");
 const videoFileSize = document.getElementById("videoFileSize");
 const videoQuality = document.getElementById("videoQuality");
 const videoDuration = document.getElementById("videoDuration");
+const downloadBtn = document.getElementById("downloadBtn")
 
 
 
@@ -45,6 +46,8 @@ function load() {
       videoQuality.textContent = data.mediaQuality;
       videoDuration.textContent = data.mediaDuration;
 
+      downloadBtn.onclick = `downloadFile(${url}, ${})`
+      
       // Swap loader for video
       videoContainer.innerHTML = `
         <video width="100%" controls poster="${data.mediaThumbnail}">
@@ -57,8 +60,8 @@ function load() {
     });
 }
 
-function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
-  const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${encodeURIComponent(filename)}`;
+function downloadFile(url, filename = `YTfetch_roxyy.mp4`) {
+  const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
   
   const a = document.createElement("a");
   a.href = downloadApiUrl;
