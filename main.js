@@ -1,3 +1,4 @@
+let currentDownloadUrl = "";
 const fetchBtn = document.getElementById("fetchBtn");
 
 const videoTitle = document.getElementById("videoTitle");
@@ -8,6 +9,8 @@ const videoType = document.getElementById("videoType");
 const videoFileSize = document.getElementById("videoFileSize");
 const videoQuality = document.getElementById("videoQuality");
 const videoDuration = document.getElementById("videoDuration");
+
+
 
 function load() {
   const yTLink = document.getElementById("url").value.trim();
@@ -42,9 +45,11 @@ function load() {
       videoQuality.textContent = data.mediaQuality || "N/A";
       videoDuration.textContent = data.mediaDuration || "N/A";
 
+      currentDownloadUrl = data.downloadUrl;
+      
       videoContainer.innerHTML = `
         <video width="100%" controls poster="${data.mediaThumbnail || ""}">
-          <source src="${data.downloadUrl}" type="video/mp4">
+          <source src="${currentDownloadUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>`;
     })
@@ -54,13 +59,17 @@ function load() {
     });
 }
 
-function downloadFile(urlPath, filename) {
-  const a = document.createElement('a')
-  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click()
-  document.body.removeChild(a)
+function downloadFile() {
+  if (!currentDownloadUrl) {
+    alert("No video available to download yet!");
+    return;
+  }
+
+  // Call backend download route
+  const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(currentDownloadUrl)}&filename=YTfetch_roxyy.mp4`;
+
+  window.location.href = downloadApiUrl; // triggers browser download
 }
+
 // 🔗 Bind button to function
 fetchBtn.addEventListener("click", load);
