@@ -32,7 +32,7 @@ const fetchBtn = document.getElementById("fetchBtn")
    videoContainer.replaceChild(loading, notice)
    }, 1000)
   
-  const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?yTFetch=${encodeURIComponent(yTLink)}`;
+  const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?yTLink=${encodeURIComponent(yTLink)}`;
 
 fetch(apiUrl)
   .then(res => res.json())
