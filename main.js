@@ -13,7 +13,6 @@ const fetchBtn = document.getElementById("fetchBtn")
   
  load = () => {
   const yTLink = document.getElementById("url").value.toString()
-  console.log(yTLink)
   const videoContainer = document.querySelector(".videoContainer")
   const notice = document.querySelector(".appears")
   const loading = document.createElement('div')
@@ -33,7 +32,45 @@ const fetchBtn = document.getElementById("fetchBtn")
    videoContainer.replaceChild(loading, notice)
    }, 1000)
   
-  const apiUrl = `https://ytfetch-backend.onrender.com/api/tiktok?url=${encodeURIComponent(yTLink)}`;
+  const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?yTFetch=${encodeURIComponent(yTLink)}`;
+
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+    videoTitle.textContent = data.title;
+    videoDescription.textContent = data.description;
+    videoViews.textContent = data.views;
+    videoLikes.textContent = data.likes;
+    videoType.textContent = `${data.type}/${data.mediaExtension}`;
+    videoFileSize.textContent = data.mediaFileSize;
+    videoQuality.textContent = data.mediaQuality
+    videoDuration.textContent = data.mediaDuration;
+    
+    /*for video
+    data.mediaThumbnail
+    data.downloadUrl*/
+    setTimeout(() => {
+    videoContainer.innerHTML =
+    `<video width="100%" controls poster="${data.mediaThumbnail}">
+      <source src="${data.downloadUrl}" type="video/mp4">
+    </video>`
+    }, 2000)
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+  
+  }
+  
+  function downloadFile(urlPath = `${data.downloadUrl}`, filename = `YTfetch_roxyy.mp4`){
+    const a = document.createElement('a')
+    a.href = `https://ytfetch-backend.onrender.com?url=${encodeURIComponent(urlPath)}&filename=${filename}`
+    a.download = filename
+    document.body.appendChild(a);
+    a.click()
+    document.body.removeChild(a)
+  }
 
 fetch(apiUrl)
   .then(res => {
