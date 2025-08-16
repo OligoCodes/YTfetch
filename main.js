@@ -72,6 +72,7 @@ function load() {
     console.error("Error:", error);
     videoContainer.innerHTML = `<p style="color:red">Error fetching video</p>`;
   });
+}
 
 function downloadFile(url, filename = `YTfetch_roxyy.mp4`) {
   const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
