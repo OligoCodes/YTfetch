@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>YTFETCH</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo"><i class="fa-brands fa-youtube"></i> YTfetch
+    </div>
+    <div class="search-fetch">
+      <input class="enter" id="url" placeholder="https://youtu.be/...">
+      <button class="fetch-btn" id="fetchBtn" , onclick="load()"><i class="fa-solid fa-cloud-arrow-down"></i>  Fetch</button>
+    </div>
+  </header>
+  
+  <main>
+    <div class="engine">
+      <!--<div class="video Appearance">
+        <video>
+          <source src="given" type="mpeg/mp4">
+        </video>
+      </div>-->
+      <div class="videoContainer">
+        <span class="appears">𝕍𝕚𝕕𝕖𝕠 𝕒𝕡𝕡𝕖𝕒𝕣𝕤 𝕒𝕣𝕠𝕦𝕟𝕕 𝕙𝕖𝕣𝕖</span>
+      </div>
+      <div class="download-box">
+        <div class="title-description">
+           <div>
+             <span class="video-title" id="videoTitle">TITLE</span>
+           </div>
+           <div>
+             <span class="video-desscription" id="videoDescription">DESCRIPTION</span>
+           </div>
+        </div>
+        <div class="analyze">
+           <div class="views">
+             <i class="fa-solid fa-eye"></i>
+             <span class="react">Views: <span id="videoViews"> ~ </span> views</span>
+           </div>
+           <div class="likes">
+             <i class="fa-solid fa-thumbs-up"></i>
+             <span class="react">Likes : <span id="videoLikes"> ~ </span> likes</span>
+           </div>
+           <div class="type">
+             <i class="fa-solid fa-play"></i>
+             <span class="react">Type: <span id="videoType"> Video/MP4</span> </span>
+           </div>
+        </div>
+       <div class= "download-space">
+           <button class="download-btn" onclick="downloadFile(urlPath, filename)"> <i class="fa-solid fa-download"></i> Download Video</button>
+           <div class="moreInfo">
+            <i class="fa-solid fa-circle-info"></i>
+            <span class="tit">File Size: <span id="videoFileSize"> ~MB</span> </span>
+            <span class="tit">Quality: <span id="videoQuality"> ~HD/SD </span></span>
+            <span id="video" class="tit">Duration: <span id="videoDuration"> </span>~hrs/mins</span>
+           </div>
+      </div>
+     </div> 
+    </div>
+  </main>
+  
+  <footer id="contact" class="footer">
+  <div class="Jesus-section">
+    <p class="Jesus-text">Inspired by <span class="Jesus" >Jesus</span></p>
+  </div>
+  <div class="social-links">
+    <a href="https://wa.me/+233551448745?text=Hi%2C%20Oligo%20👋" class="social-link" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.tiktok.com/@oligocodes" class="social-link" title="TikTok"><i class="fab fa-tiktok" target="_blank"></i></a>
+    <a href="https://www.instagram.com/oligocodes" class="social-link" title="Instagram"><i class="fab fa-instagram" target="_blank"></i></a>
+    <a href="https://github.com/OligoCodes" class="social-link" title="GitHub"><i class="fab fa-github" target="_blank"></i></a>
+    <a href="mailto:josephoseibonsu742@gmail.com" class="social-link" title="Email" target="_blank"><i class="fas fa-envelope"></i></a>
+    <a href="https://discord.gg/jTJUs5Qt" class="social-link" title="Instagram" target="_blank"><i class="fa-brands fa-discord"></i></a>
+    
+  </div>
+  <p class="copyright">&copy; OligoTech 2025 - 2125</p>
+</footer>
+  <!-- Project -->
+  <script src="main.js"></script>
+</body>
+</html>
