@@ -12,20 +12,20 @@ const videoDuration = document.getElementById("videoDuration");
 
 
 function load() {
-  const yTLink = document.getElementById("url").value.trim();
+  const yTLink = document.getElementById("url").value.toString();
   const videoContainer = document.querySelector(".videoContainer");
 
-  if (!yTLink) {
-    alert("Please enter a YouTube link first.");
-    return;
-  }
-
-  // Show loader immediately
+  // Clear old content and show loader immediately
   videoContainer.innerHTML = `
     <div class="load-box">
-      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      <div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
   `;
 
@@ -34,22 +34,21 @@ function load() {
   fetch(apiUrl)
     .then(res => res.json())
     .then(data => {
+      console.log(data);
 
       videoTitle.textContent = data.title;
       videoDescription.textContent = data.description;
       videoViews.textContent = data.views;
       videoLikes.textContent = data.likes;
       videoType.textContent = `${data.type}/${data.mediaExtension}`;
-      videoFileSize.textContent = data.mediaFileSize ;
-      videoQuality.textContent = data.mediaQuality ;
-      videoDuration.textContent = data.mediaDuration ;
+      videoFileSize.textContent = data.mediaFileSize;
+      videoQuality.textContent = data.mediaQuality;
+      videoDuration.textContent = data.mediaDuration;
 
-      currentDownloadUrl = data.downloadUrl;
-      
+      // Swap loader for video
       videoContainer.innerHTML = `
         <video width="100%" controls poster="${data.mediaThumbnail}">
-          <source src="${currentDownloadUrl}" type="video/mp4">
-          Your browser does not support the video tag.
+          <source src="${data.downloadUrl}" type="video/mp4">
         </video>`;
     })
     .catch(error => {
