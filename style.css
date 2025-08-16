@@ -346,7 +346,6 @@ main{
         padding: 3rem 2rem 2rem;
         text-align: center;
         border-top: 1px solid var(--border-color);
-        z-index: -100;
 }
 
 .Jesus-section {
