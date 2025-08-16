@@ -32,7 +32,6 @@ function load() {
   fetch(apiUrl)
     .then(res => res.json())
     .then(data => {
-      console.log("API Response:", data);
 
       videoTitle.textContent = data.title || "No title";
       videoDescription.textContent = data.description || "No description";
