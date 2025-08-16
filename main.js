@@ -59,16 +59,15 @@ function load() {
     });
 }
 
-function downloadFile() {
-  if (!currentDownloadUrl) {
-    alert("No video available to download yet!");
-    return;
-  }
-
-  // Call backend download route
-  const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(currentDownloadUrl)}&filename=YTfetch_roxyy.mp4`;
-
-  window.location.href = downloadApiUrl; // triggers browser download
+function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
+  const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${encodeURIComponent(filename)}`;
+  
+  const a = document.createElement("a");
+  a.href = downloadApiUrl;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 // 🔗 Bind button to function
