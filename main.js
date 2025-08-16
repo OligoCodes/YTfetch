@@ -30,7 +30,7 @@ function load() {
     </div>
   `;
 
-  const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?yTLink=${encodeURIComponent(yTLink)}`;
+  const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?url=${encodeURIComponent(yTLink)}`;
 
   fetch(apiUrl)
     .then(res => res.json())
@@ -46,7 +46,7 @@ function load() {
       videoQuality.textContent = data.mediaQuality;
       videoDuration.textContent = data.mediaDuration;
 
-      downloadBtn.onclick = `downloadFile(${url}, ${})`
+      downloadBtn.onclick = `downloadFile(${data.downloadUrl}, 'YTfetch_roxyy.mp4')`
       
       // Swap loader for video
       videoContainer.innerHTML = `
