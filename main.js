@@ -1,4 +1,3 @@
-let currentDownloadUrl = "";
 const fetchBtn = document.getElementById("fetchBtn");
 
 const videoTitle = document.getElementById("videoTitle");
@@ -36,19 +35,19 @@ function load() {
     .then(res => res.json())
     .then(data => {
 
-      videoTitle.textContent = data.title || "No title";
-      videoDescription.textContent = data.description || "No description";
-      videoViews.textContent = data.views || "N/A";
-      videoLikes.textContent = data.likes || "N/A";
-      videoType.textContent = `${data.type || "unknown"}/${data.mediaExtension || ""}`;
-      videoFileSize.textContent = data.mediaFileSize || "N/A";
-      videoQuality.textContent = data.mediaQuality || "N/A";
-      videoDuration.textContent = data.mediaDuration || "N/A";
+      videoTitle.textContent = data.title;
+      videoDescription.textContent = data.description;
+      videoViews.textContent = data.views;
+      videoLikes.textContent = data.likes;
+      videoType.textContent = `${data.type}/${data.mediaExtension}`;
+      videoFileSize.textContent = data.mediaFileSize ;
+      videoQuality.textContent = data.mediaQuality ;
+      videoDuration.textContent = data.mediaDuration ;
 
       currentDownloadUrl = data.downloadUrl;
       
       videoContainer.innerHTML = `
-        <video width="100%" controls poster="${data.mediaThumbnail || ""}">
+        <video width="100%" controls poster="${data.mediaThumbnail}">
           <source src="${currentDownloadUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>`;
