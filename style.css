@@ -250,6 +250,11 @@ main{
     margin: 15px 0 0 25px;
 }
 
+.download-btn:hover{
+        transform: scale(1.04);
+        transition: all 0.3s ease;
+}
+
 .fa-circle-info{
     color: var(--youtube-red); 
 }
