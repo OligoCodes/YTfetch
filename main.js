@@ -37,7 +37,7 @@ const fetchBtn = document.getElementById("fetchBtn")
 fetch(apiUrl)
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+  
     videoTitle.textContent = data.title;
     videoDescription.textContent = data.description;
     videoViews.textContent = data.views;
@@ -63,25 +63,14 @@ fetch(apiUrl)
   
   }
   
-  function downloadFile(urlPath = `${data.downloadUrl}`, filename = `YTfetch_roxyy.mp4`){
-    const a = document.createElement('a')
-    a.href = `https://ytfetch-backend.onrender.com?url=${encodeURIComponent(urlPath)}&filename=${filename}`
-    a.download = filename
-    document.body.appendChild(a);
-    a.click()
-    document.body.removeChild(a)
-  }
-
-fetch(apiUrl)
-  .then(res => {
-    if (!res.ok) {
-      if (res.status === 429) {
-      throw new Error("Monthly quota exceeded. Try again next month or support the developer.");
-  } else {
-    throw new Error("Server error: " + res.status);
-  }
-}
-return res.json();
+  function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
+  const a = document.createElement('a')
+  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
+  a.download = filename
+  document.body.appendChild(a);
+  a.click()
+  document.body.removeChild(a)
+  }return res.json();
 })
   .then(data => {
     
