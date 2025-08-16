@@ -32,7 +32,7 @@ const fetchBtn = document.getElementById("fetchBtn")
    videoContainer.replaceChild(loading, notice)
    }, 1000)
   
-  const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?yTLink=${encodeURIComponent(yTLink)}`;
+  const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?yTLink=${(yTLink)}`;
 
 fetch(apiUrl)
   .then(res => res.json())
@@ -46,6 +46,7 @@ fetch(apiUrl)
     videoFileSize.textContent = data.mediaFileSize;
     videoQuality.textContent = data.mediaQuality
     videoDuration.textContent = data.mediaDuration;
+    
     
     /*for video
     data.mediaThumbnail
@@ -62,6 +63,15 @@ fetch(apiUrl)
   });
   
   }
+  
+  function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
+  const a = document.createElement('a')
+  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
+  a.download = filename
+  document.body.appendChild(a);
+  a.click()
+  document.body.removeChild(a)
+  }  }
   
   function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
   const a = document.createElement('a')
