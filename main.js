@@ -63,7 +63,7 @@ function load() {
 }
 
 function downloadFile(url, filename = `YTfetch_roxyy.mp4`) {
-  const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
+  const downloadApiUrl = `https://ytfetch-backend.onrender.com/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
   
   const a = document.createElement("a");
   a.href = downloadApiUrl;
