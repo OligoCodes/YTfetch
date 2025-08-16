@@ -110,9 +110,9 @@ return res.json();
   
   }
   
-  function downloadFile(urlPath = `${data.downloadUrl}`, filename = `YTfetch_roxyy.mp4`){
+  function downloadFile(urlPath , filename = `YTfetch_roxyy.mp4`){
     const a = document.createElement('a')
-    a.href = //added soon
+    a.href = `https://ytfetch-backend.onrender.com?url=${encodeURIComponent(urlPath)}&filename=${filename}`
     a.download = filename
     document.body.appendChild(a);
     a.click()
