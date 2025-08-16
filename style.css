@@ -137,7 +137,7 @@ main{
     text-shadow: 0 0 50px var(--youtube-red);
     width: 100%;
     margin-top: 10px;
-    animation: breathe 3s ease 3;
+    animation: breathe 3s ease 5;
 }
 
 @keyframes breathe{
