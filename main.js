@@ -46,7 +46,9 @@ function load() {
       videoQuality.textContent = data.mediaQuality;
       videoDuration.textContent = data.mediaDuration;
 
-      downloadBtn.onclick = `downloadFile(${data.downloadUrl}, 'YTfetch_roxyy.mp4')`
+      downloadBtn.onclick = function() {
+        downloadFile(data.downloadUrl, 'YTfetch_roxyy.mp4')
+      };
       
       // Swap loader for video
       videoContainer.innerHTML = `
