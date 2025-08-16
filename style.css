@@ -230,7 +230,7 @@ main{
     border: solid var(--border-color);
     width: 100%;
     background: var(--accent-bg);
-    height: 160px;
+    height: 180px;
     border-radius: 12px;
     box-shadow: var(--shadow-light);
     gap: 15px;
