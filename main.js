@@ -47,7 +47,9 @@ function load() {
       videoDuration.textContent = data.mediaDuration;
 
       downloadBtn.onclick = function() {
-        downloadFile(data.downloadUrl, 'YTfetch_roxyy.mp4')
+        let downloadUrl = data.downloadUrl;
+        let secureDownload = downloadUrl.replace("http://", "https://")        
+          downloadFile(secureDownload, 'YTfetch_roxyy.mp4')
       };
       
       // Swap loader for video
