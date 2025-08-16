@@ -55,5 +55,13 @@ function load() {
     });
 }
 
+function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
+  const a = document.createElement('a')
+  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
+  a.download = filename
+  document.body.appendChild(a);
+  a.click()
+  document.body.removeChild(a)
+}
 // 🔗 Bind button to function
 fetchBtn.addEventListener("click", load);
