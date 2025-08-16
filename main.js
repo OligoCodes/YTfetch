@@ -10,158 +10,50 @@ const videoQuality = document.getElementById("videoQuality");
 const videoDuration = document.getElementById("videoDuration");
 
 function load() {
-  const yTLink = document.getElementById("url").value.toString();
+  const yTLink = document.getElementById("url").value.trim();
   const videoContainer = document.querySelector(".videoContainer");
-  const notice = document.querySelector(".appears");
 
-  // Loading animation
-  const loading = document.createElement("div");
-  loading.className = "load-box";
-  loading.innerHTML = `
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-  `;
-
-  if (notice) {
-    setTimeout(() => {
-      videoContainer.replaceChild(loading, notice);
-    }, 1000);
-  } else {
-    videoContainer.appendChild(loading);
+  if (!yTLink) {
+    alert("Please enter a YouTube link first.");
+    return;
   }
+
+  // Show loader immediately
+  videoContainer.innerHTML = `
+    <div class="load-box">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+  `;
 
   const apiUrl = `https://ytfetch-backend.onrender.com/api/youtube?yTLink=${encodeURIComponent(yTLink)}`;
 
   fetch(apiUrl)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      console.log("API Response:", data);
 
-      videoTitle.textContent = data.title;
-      videoDescription.textContent = data.description;
-      videoViews.textContent = data.views;
-      videoLikes.textContent = data.likes;
-      videoType.textContent = `${data.type}/${data.mediaExtension}`;
-      videoFileSize.textContent = data.mediaFileSize;
-      videoQuality.textContent = data.mediaQuality;
-      videoDuration.textContent = data.mediaDuration;
+      videoTitle.textContent = data.title || "No title";
+      videoDescription.textContent = data.description || "No description";
+      videoViews.textContent = data.views || "N/A";
+      videoLikes.textContent = data.likes || "N/A";
+      videoType.textContent = `${data.type || "unknown"}/${data.mediaExtension || ""}`;
+      videoFileSize.textContent = data.mediaFileSize || "N/A";
+      videoQuality.textContent = data.mediaQuality || "N/A";
+      videoDuration.textContent = data.mediaDuration || "N/A";
 
-      setTimeout(() => {
-        videoContainer.innerHTML = `
-          <video width="100%" controls poster="${data.mediaThumbnail}">
-            <source src="${data.downloadUrl}" type="video/mp4">
-          </video>`;
-      }, 2000);
+      videoContainer.innerHTML = `
+        <video width="100%" controls poster="${data.mediaThumbnail || ""}">
+          <source src="${data.downloadUrl}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>`;
     })
     .catch(error => {
       console.error("Error:", error);
+      videoContainer.innerHTML = `<p style="color:red">Error fetching video</p>`;
     });
 }
 
-function downloadFile(urlPath, filename = "YTfetch_roxyy.mp4") {
-  const a = document.createElement("a");
-  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}fetch(apiUrl)
-  .then(res => res.json())
-  .then(data => {
-  
-    console.log(data)
-    videoTitle.textContent = data.title;
-    videoDescription.textContent = data.description;
-    videoViews.textContent = data.views;
-    videoLikes.textContent = data.likes;
-    videoType.textContent = `${data.type}/${data.mediaExtension}`;
-    videoFileSize.textContent = data.mediaFileSize;
-    videoQuality.textContent = data.mediaQuality
-    videoDuration.textContent = data.mediaDuration;
-    
-    
-    /*for video
-    data.mediaThumbnail
-    data.downloadUrl*/
-    setTimeout(() => {
-    videoContainer.innerHTML =
-    `<video width="100%" controls poster="${data.mediaThumbnail}">
-      <source src="${data.downloadUrl}" type="video/mp4">
-    </video>`
-    }, 2000)
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
-  
-  }
-  
-  function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
-  const a = document.createElement('a')
-  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
-  a.download = filename
-  document.body.appendChild(a);
-  a.click()
-  document.body.removeChild(a)
-  }  
-  }
-  
-  function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
-  const a = document.createElement('a')
-  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
-  a.download = filename
-  document.body.appendChild(a);
-  a.click()
-  document.body.removeChild(a)
-  }  }
-  
-  function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
-  const a = document.createElement('a')
-  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
-  a.download = filename
-  document.body.appendChild(a);
-  a.click()
-  document.body.removeChild(a)
-  }return res.json();
-})
-  .then(data => {
-    
-    videoTitle.textContent = data.title;
-    videoDescription.textContent = data.description;
-    videoViews.textContent = data.views;
-    videoLikes.textContent = data.likes;
-    videoType.textContent = `${data.type}/${data.mediaExtension}`;
-    videoFileSize.textContent = data.mediaFileSize;
-    videoQuality.textContent = data.mediaQuality
-    videoDuration.textContent = data.mediaDuration;
-    
-    /*for video
-    data.mediaThumbnail
-    data.downloadUrl*/
-    setTimeout(() => {
-    videoContainer.innerHTML =
-    `<video width="100%" controls poster="${data.mediaThumbnail}">
-      <source src="${data.downloadUrl}" type="video/mp4">
-    </video>`
-    }, 2000)
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
-  
-  }
-  
-  function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`){
-  const a = document.createElement('a')
-  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
-  a.download = filename
-  document.body.appendChild(a);
-  a.click()
-  document.body.removeChild(a)
-  }
+// 🔗 Bind button to function
+fetchBtn.addEventListener("click", load);
