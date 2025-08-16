@@ -38,6 +38,7 @@ fetch(apiUrl)
   .then(res => res.json())
   .then(data => {
   
+    console.log(data)
     videoTitle.textContent = data.title;
     videoDescription.textContent = data.description;
     videoViews.textContent = data.views;
@@ -62,6 +63,16 @@ fetch(apiUrl)
     console.error("Error:", error);
   });
   
+  }
+  
+  function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
+  const a = document.createElement('a')
+  a.href = `https://ytfetch-backend.onrender.com/api/download?urlPath=${encodeURIComponent(urlPath)}&filename=${filename}`
+  a.download = filename
+  document.body.appendChild(a);
+  a.click()
+  document.body.removeChild(a)
+  }  
   }
   
   function downloadFile(urlPath, filename = `YTfetch_roxyy.mp4`) {
